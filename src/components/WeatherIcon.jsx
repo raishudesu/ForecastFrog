@@ -12,21 +12,22 @@ import {
 import { RiCloudWindyFill } from "react-icons/ri";
 
 const WeatherIcon = ({ icon }) => {
-  const currentIcon = (size) => {
-    if (icon === "snow") return <BsFillCloudSnowFill size={size} />;
-    if (icon === "rain") return <BsFillCloudRainFill size={size} />;
-    if (icon === "fog") return <BsCloudFogFill size={size} />;
-    if (icon === "wind") return <RiCloudWindyFill size={size} />;
-    if (icon === "cloudy") return <BsFillCloudyFill size={size} />;
-    if (icon === "partly-cloudy-day") return <BsFillCloudSunFill size={size} />;
-    if (icon === "partly-cloudy-night")
-      return <BsFillCloudMoonFill size={size} />;
-    if (icon === "clear-day") return <BsFillSunFill size={size} />;
-    if (icon === "clear-night") return <BsFillMoonFill size={size} />;
+  const objectIcons = {
+    snow: <BsFillCloudSnowFill size={200} />,
+    rain: <BsFillCloudRainFill size={200} />,
+    fog: <BsCloudFogFill size={200} />,
+    wind: <RiCloudWindyFill size={200} />,
+    cloudy: <BsFillCloudyFill size={200} />,
+    "partly-cloudy-day": <BsFillCloudSunFill size={200} />,
+    "partly-cloudy-night": <BsFillCloudMoonFill size={200} />,
+    "clear-day": <BsFillSunFill size={200} />,
+    "clear-night": <BsFillMoonFill size={200} />,
   };
+
+  const currentIcon = objectIcons[icon];
   return (
     <div className="w-full max-h-fit overflow-hidden flex flex-col justify-center items-center">
-      <div>{currentIcon(200)}</div>
+      {currentIcon}
       <h1 className="uppercase font-semibold text-6xl">{icon}</h1>
     </div>
   );

@@ -7,18 +7,20 @@ import { AiOutlineEye } from "react-icons/ai";
 import { GiWindsock } from "react-icons/gi";
 
 const WeatherDetails = ({ details, value }) => {
-  const detailIcon = (size) => {
-    if (details === "Feels like") return <CiTempHigh size={size} />;
-    if (details === "Wind speed") return <PiWindDuotone size={size} />;
-    if (details === "Humidity") return <WiHumidity size={size} />;
-    if (details === "UV") return <BsSun size={size} />;
-    if (details === "Visibility") return <AiOutlineEye size={size} />;
-    if (details === "Air pressure") return <GiWindsock size={size} />;
+  const iconMapping = {
+    "Feels like": <CiTempHigh size={30} />,
+    "Wind speed": <PiWindDuotone size={30} />,
+    Humidity: <WiHumidity size={30} />,
+    UV: <BsSun size={30} />,
+    Visibility: <AiOutlineEye size={30} />,
+    "Air pressure": <GiWindsock size={30} />,
   };
+
+  const icon = iconMapping[details];
   return (
     <div>
       <div className="flex flex-col items-center bg-[#526D82] p-6 rounded-xl">
-        {detailIcon(30)}
+        {icon}
         <h1>{details}</h1>
         <h1>{value}</h1>
       </div>

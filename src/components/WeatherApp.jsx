@@ -20,15 +20,18 @@ const WeatherApp = () => {
   } = useQuery({
     queryKey: ["stats"],
     queryFn: async () => {
-      return await axios
-        .get(
-          `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}?unitGroup=us&key=RBCZDLGC972YKPBKKVJ2UBRH4&contentType=json`
-        )
-        .then((result) => result.data)
-        .catch((error) => {
-          console.log(error);
-        });
+      return location
+        ? await axios
+            .get(
+              `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}?unitGroup=us&key=RBCZDLGC972YKPBKKVJ2UBRH4&contentType=json`
+            )
+            .then((result) => result.data)
+            .catch((error) => {
+              console.log(error);
+            })
+        : isLoading;
     },
+
     refetchOnWindowFocus: false,
   });
 
@@ -71,12 +74,12 @@ const WeatherApp = () => {
         <SearchLocation handleLocation={handleLocation} />
         {location ? ( // Use ternary operator to conditionally render content
           <>
-            <div className="flex flex-col justify-center items-center">
+            <div className="flex justify-center items-center flex-wrap">
+              <TiLocation size={40} />
               <h1 className="text-3xl font-semibold">{resolvedAddress}</h1>
-              <TiLocation size={60} />
             </div>
             {isLoading && <BiLoader size={30} className="animate-spin" />}
-            {isSuccess && !isLoading && (
+            {isSuccess && (
               <>
                 <WeatherIcon icon={icon} />
                 <div className="w-full flex flex-col justify-center items-center gap-2">
