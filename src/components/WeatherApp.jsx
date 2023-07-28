@@ -70,7 +70,7 @@ const WeatherApp = () => {
   ];
   return (
     <div className="w-full min-h-screen max-h-fit py-4 p-2 flex justify-center overflow-hidden">
-      <div className="flex flex-col justify-center items-center gap-4 text-center md:max-w-[50%]">
+      <div className="flex flex-col justify-center items-center gap-4 text-center md:max-w-[60%] lg:max-w-[50%] xl:max-w-[30%]">
         <SearchLocation handleLocation={handleLocation} />
         {location ? ( // Use ternary operator to conditionally render content
           <>
